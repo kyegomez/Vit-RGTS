@@ -10,17 +10,41 @@ The vit model from the paper "VISION TRANSFORMERS NEED REGISTERS"
 * Agorians
 
 # Install
-`pip install vit-registers`
+`pip install vit-rgts`
 
 # Usage
+```python
+import torch
+from vit_rgts.main import VitRGTS
 
-# Architecture
+v = VitRGTS(
+    image_size = 256,
+    patch_size = 32,
+    num_classes = 1000,
+    dim = 1024,
+    depth = 6,
+    heads = 16,
+    mlp_dim = 2048,
+    dropout = 0.1,
+    emb_dropout = 0.1
+)
 
-# Todo
+img = torch.randn(1, 3, 256, 256)
 
+preds = v(img) # (1, 1000)
+print(preds)
+```
 
 # License
 MIT
 
 # Citations
 
+```
+@misc{2309.16588,
+Author = {Timothée Darcet and Maxime Oquab and Julien Mairal and Piotr Bojanowski},
+Title = {Vision Transformers Need Registers},
+Year = {2023},
+Eprint = {arXiv:2309.16588},
+}
+```
