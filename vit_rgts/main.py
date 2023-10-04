@@ -4,6 +4,8 @@ from einops import rearrange, repeat, unpack, pack
 from einops.layers.torch import Rearrange
 import torch.nn.functional as F
 
+
+#utils
 def pair(t):
     return t if isinstance(t, tuple) else (t, t)
 
@@ -27,6 +29,8 @@ def pos_emb_sincos_2d(
     pe = torch.cat((x.sin(), x.cos(), y.sin(), y.cos()), dim=1)
     return pe.type(dtype)
 
+
+#classes
 class FeedForward(nn.Module):
     def __init__(
         self, 
@@ -94,7 +98,7 @@ class Attention(nn.Module):
         
         # attn
         with torch.backends.cuda.sdp_kernel(enable_math=True):
-            #attention
+            #Flash Attention
             out = F.scaled_dot_product_attention(q, k, v)
 
             #softmax
