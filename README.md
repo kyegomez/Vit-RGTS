@@ -1,7 +1,12 @@
 [![Multi-Modality](agorabanner.png)](https://discord.gg/qUtxnK2NMf)
 
 # VISION TRANSFORMERS NEED REGISTERS
-The vit model from the paper "VISION TRANSFORMERS NEED REGISTERS"
+The vit model from the paper "VISION TRANSFORMERS NEED REGISTERS" that reaches SOTA for dense
+visual prediction tasks, enables object discovery methods with larger model, and leads to smoother feature maps and attentions maps for downstream visual processing.
+
+Register tokens enable interpretable attention maps in all vision transofrmers!
+
+
 
 [Paper Link](https://arxiv.org/pdf/2309.16588.pdf)
 
@@ -34,6 +39,9 @@ img = torch.randn(1, 3, 256, 256)
 preds = v(img) # (1, 1000)
 print(preds)
 ```
+
+# Architecture
+- Additional tokens to input sequence that cleanup low informative background areas of images
 
 # License
 MIT
