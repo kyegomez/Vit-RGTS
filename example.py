@@ -14,6 +14,8 @@ v = VitRGTS(
 )
 
 img = torch.randn(1, 3, 256, 256)
+print(f'Input image shape: {img}') # Input image shape: torch.Size([1, 3, 256, 256])
 
 preds = v(img) # (1, 1000)
-print(preds)
+print(f"Output tensors shape: {preds}") # Output tensors shape: torch.Size([1, 1000])
+print(preds.shape)

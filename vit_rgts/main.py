@@ -1,15 +1,15 @@
-import torch 
-from torch import nn
-from einops import rearrange, repeat, unpack, pack
-from einops.layers.torch import Rearrange
+import torch
 import torch.nn.functional as F
+from einops import pack, rearrange, repeat, unpack
+from einops.layers.torch import Rearrange
+from torch import nn
 
 
 #utils
 def pair(t):
     return t if isinstance(t, tuple) else (t, t)
 
-
+# Pos embedding
 def pos_emb_sincos_2d(
     h,
     w,
@@ -148,8 +148,10 @@ class Attention(nn.Module):
         #dropout
         self.dropout = nn.Dropout(dropout)
 
-        #projections
+        #projections, split from x -> q, k, v
         self.to_qkv = nn.Linear(dim, inner_dim * 3, bias = False)
+        
+        #project out
         self.to_out = nn.Sequential(
             nn.Linear(inner_dim, dim),
             nn.Dropout(dropout)
@@ -163,7 +165,12 @@ class Attention(nn.Module):
         qkv = self.to_qkv(x).chunk(3, dim = -1)
 
         #rearrange x to original shape
-        q, k, v = map(lambda t: rearrange(t, 'b n (h d) -> b h n d', h = self.heads), qkv)
+        q, k, v = map(
+            lambda t: rearrange(
+                t, 
+                'b n (h d) -> b h n d', 
+                h = self.heads
+            ), qkv)
 
         # #normalize key and values, known QK Normalization
         k = self.norm_k(k)
@@ -231,7 +238,7 @@ class Transformer(nn.Module):
         #transformer layers data array
         self.layers = nn.ModuleList([])
         
-        #add transformer layers as depth = layers
+        #add transformer layers as depth = transformer blocks
         for _ in range(depth):
             self.layers.append(nn.ModuleList([
                 #attention
@@ -404,7 +411,7 @@ class VitRGTS(nn.Module):
         #apply mean
         x = x.mean(dim=1)
         
-        #to latent laye
+        #to latent layer
         x = self.to_latent(x)
 
         #linear head
