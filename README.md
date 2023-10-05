@@ -86,6 +86,6 @@ Eprint = {arXiv:2309.16588},
 
 # Todo
 - [x] Make a new training script
-- [ ] Make a table of datasets used in the paper
+- [x] Make a table of datasets used in the paper
 - [ ] Make a blog article on architecture and applications
-- [ ]
+- [ ] Clean up operations, remove reduancy in attention, transformer, and vitgi
