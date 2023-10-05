@@ -149,7 +149,11 @@ class Attention(nn.Module):
         self.dropout = nn.Dropout(dropout)
 
         #projections, split from x -> q, k, v
-        self.to_qkv = nn.Linear(dim, inner_dim * 3, bias = False)
+        self.to_qkv = nn.Linear(
+            dim, 
+            inner_dim * 3, 
+            bias = False
+        )
         
         #project out
         self.to_out = nn.Sequential(
@@ -242,8 +246,12 @@ class Transformer(nn.Module):
         for _ in range(depth):
             self.layers.append(nn.ModuleList([
                 #attention
-                Attention(dim, heads = heads, dim_head = dim_head, dropout = dropout),
-
+                Attention(
+                    dim, 
+                    heads = heads, 
+                    dim_head = dim_head, 
+                    dropout = dropout
+                ),
                 #feedforward
                 FeedForward(dim, mlp_dim, dropout)
             ]))
@@ -371,7 +379,14 @@ class VitRGTS(nn.Module):
         self.dropout = nn.Dropout(emb_dropout)
         
         #apply transformers
-        self.transformer = Transformer(dim, depth, heads, dim_head, mlp_dim, dropout)
+        self.transformer = Transformer(
+            dim, 
+            depth, 
+            heads, 
+            dim_head, 
+            mlp_dim, 
+            dropout
+        )
 
         self.pool = pool
         self.to_latent = nn.Identity()
