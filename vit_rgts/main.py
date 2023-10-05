@@ -184,9 +184,6 @@ class Attention(nn.Module):
         with torch.backends.cuda.sdp_kernel(enable_math=True):
             #Flash Attention
             out = F.scaled_dot_product_attention(q, k, v)
-
-            #softmax
-            out = self.attend(out)
             
             #dropout
             out = self.dropout(out)
