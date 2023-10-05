@@ -56,3 +56,8 @@ Year = {2023},
 Eprint = {arXiv:2309.16588},
 }
 ```
+
+
+# Todo
+- [ ] Make a new training script
+- [ ]

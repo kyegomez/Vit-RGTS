@@ -6,7 +6,7 @@ from torchvision import datasets, transforms
 from torch.optim import Adam
 from torch.optim.lr_scheduler import LambdaLR
 from torch.nn.utils import clip_grad_norm_
-from mega_vit.main import MegaVit
+from vit_rgts.main import VitRGTS
 
 # 1. Setup and Imports
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -27,7 +27,7 @@ train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
 val_loader = DataLoader(val_dataset, batch_size=64, shuffle=False)
 
 # 3. Model Initialization
-model = MegaVit(
+model = VitRGTS(
     image_size=224,
     patch_size=14,
     num_classes=10,  # CIFAR-10 has 10 classes
