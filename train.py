@@ -1,11 +1,11 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-from torch.utils.data import DataLoader, random_split
-from torchvision import datasets, transforms
+from torch.nn.utils import clip_grad_norm_
 from torch.optim import Adam
 from torch.optim.lr_scheduler import LambdaLR
-from torch.nn.utils import clip_grad_norm_
+from torch.utils.data import DataLoader, random_split
+from torchvision import datasets, transforms
+
 from vit_rgts.main import VitRGTS
 
 # 1. Setup and Imports
