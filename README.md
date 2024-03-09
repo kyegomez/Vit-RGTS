@@ -4,7 +4,7 @@
 The vit model from the paper "VISION TRANSFORMERS NEED REGISTERS" that reaches SOTA for dense
 visual prediction tasks, enables object discovery methods with larger model, and leads to smoother feature maps and attentions maps for downstream visual processing.
 
-Register tokens enable interpretable attention maps in all vision transofrmers!
+Register tokens enable interpretable attention maps in all vision transformers!
 
 
 
@@ -43,7 +43,7 @@ print(preds)
 # Architecture
 - Additional tokens to input sequence that cleanup low informative background areas of images
 
-# Dataset Srtrategy
+# Dataset Strategy
 Here is a table summarizing the key datasets mentioned in the paper along with their metadata and source links:
 
 | Dataset | Type | Size | Tasks | Source |
@@ -88,4 +88,4 @@ Eprint = {arXiv:2309.16588},
 - [x] Make a new training script
 - [x] Make a table of datasets used in the paper
 - [ ] Make a blog article on architecture and applications
-- [ ] Clean up operations, remove reduancy in attention, transformer, and vitgi
+- [ ] Clean up operations, remove redundancy in attention, transformer, and vitgi
